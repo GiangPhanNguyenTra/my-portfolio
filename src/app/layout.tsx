@@ -9,8 +9,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Phan Nguyễn Trà Giang | Fullstack Developer",
-  description: "Portfolio of Phan Nguyễn Trà Giang.",
+  title: "Phan Nguyen Tra Giang | Fullstack Developer",
+  description: "Portfolio of Phan Nguyen Tra Giang.",
+  icons: {
+    icon: "/logo1.png",
+    shortcut: "/logo1.png",
+    apple: "/logo1.png",
+  },
 };
 
 export default function RootLayout({

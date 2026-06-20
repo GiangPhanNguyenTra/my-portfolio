@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Globe, Menu, Moon, Sun, X } from "lucide-react";
@@ -51,9 +52,17 @@ export function Navbar({
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <div
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-2xl font-bold cursor-pointer bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent"
+          className="flex cursor-pointer items-center"
+          aria-label="Go to top"
         >
-          PTG.
+          <Image
+            src="/logo1.png"
+            alt="Phan Tra Giang logo"
+            width={128}
+            height={48}
+            priority
+            className="h-9 w-auto md:h-10"
+          />
         </div>
 
         <div className="hidden md:flex items-center space-x-8">

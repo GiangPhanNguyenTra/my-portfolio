@@ -57,35 +57,37 @@ export function ContactSection({ t }: ContactSectionProps) {
             </p>
           </motion.div>
 
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr] xl:grid-cols-[0.78fr_1.22fr]">
             <motion.div
               variants={fadeInUp}
-              className="rounded-[2rem] border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900"
+              className="rounded-[2rem] border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900 md:p-6"
             >
-              <div className="mb-6 rounded-[1.75rem] border border-emerald-100 bg-emerald-50/70 p-5 dark:border-emerald-500/15 dark:bg-emerald-500/10">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-600 dark:text-emerald-400">
+              <div className="mb-5 rounded-[1.5rem] border border-emerald-100 bg-emerald-50/70 p-4 dark:border-emerald-500/15 dark:bg-emerald-500/10 md:p-5">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-600 dark:text-emerald-400">
                   Let&apos;s Connect
                 </p>
-                <p className="mt-3 leading-7 text-zinc-700 dark:text-zinc-300">
+                <p className="mt-3 text-sm leading-7 text-zinc-700 dark:text-zinc-300 md:text-[15px]">
                   I&apos;m open to backend, full-stack, and AI integration
                   opportunities. If you have a role, freelance project, or
                   collaboration idea in mind, feel free to reach out.
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                 {contactItems(t).map(({ label, value, href, Icon }) => {
                   const body = (
-                    <div className="group rounded-[1.5rem] border border-zinc-200 bg-zinc-50 p-5 transition-all duration-300 hover:border-emerald-400/50 hover:bg-white dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-900">
-                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-emerald-500 shadow-sm dark:bg-zinc-900">
-                        <Icon size={20} />
+                    <div className="group flex items-center gap-3 rounded-[1.35rem] border border-zinc-200 bg-zinc-50 p-3.5 transition-all duration-300 hover:border-emerald-400/50 hover:bg-white dark:border-zinc-800 dark:bg-zinc-950 dark:hover:bg-zinc-900 md:p-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-emerald-500 shadow-sm dark:bg-zinc-900">
+                        <Icon size={18} />
                       </div>
-                      <p className="text-sm font-medium uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">
-                        {label}
-                      </p>
-                      <p className="mt-2 text-lg font-semibold text-zinc-900 break-words dark:text-white">
-                        {value}
-                      </p>
+                      <div className="min-w-0">
+                        <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-zinc-500 dark:text-zinc-400">
+                          {label}
+                        </p>
+                        <p className="mt-1 break-words text-sm font-semibold leading-6 text-zinc-900 dark:text-white md:text-[15px]">
+                          {value}
+                        </p>
+                      </div>
                     </div>
                   );
 

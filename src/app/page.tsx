@@ -1,65 +1,172 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
+import { Terminal } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { AboutSection } from "@/components/sections/AboutSection";
+import { SkillsSection } from "@/components/sections/SkillsSection";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { BlogsSection } from "@/components/sections/BlogsSection";
+import { WhyHireMeSection } from "@/components/sections/WhyHireMeSection";
+import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+import { useActiveSection } from "@/hooks/useActiveSection";
+import { useMounted } from "@/hooks/useMounted";
+import { scrollSpySections } from "@/config/navigation";
+import type { ThemeMode } from "@/types/portfolio";
+
+const LOADER_SESSION_KEY = "portfolio-loader-seen";
+
+function Loader({ onComplete }: { onComplete: () => void }) {
+  const [text, setText] = useState("");
+  const fullText = "Initializing system...";
+
+  useEffect(() => {
+    let i = 0;
+    const timer = setInterval(() => {
+      setText(fullText.slice(0, i));
+      i += 1;
+      if (i > fullText.length) {
+        clearInterval(timer);
+        setTimeout(onComplete, 800);
+      }
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, [onComplete]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -50, filter: "blur(10px)" }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-zinc-50 dark:bg-zinc-950"
+    >
+      <div className="flex items-center gap-2 font-mono text-xl text-emerald-500 md:text-2xl">
+        <Terminal size={28} className="animate-pulse" />
+        {text}
+        <motion.span
+          animate={{ opacity: [0, 1, 0] }}
+          transition={{ repeat: Infinity, duration: 0.8 }}
+          className="inline-block h-6 w-3 bg-emerald-500"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      </div>
+
+      <motion.div
+        initial={{ width: 0 }}
+        animate={{ width: "200px" }}
+        transition={{ duration: 1.5, delay: 0.5, ease: "easeInOut" }}
+        className="relative mt-8 h-1 overflow-hidden rounded-full bg-emerald-500/20"
+      >
+        <motion.div
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          className="h-full w-1/2 bg-emerald-500"
+        />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+export default function HomePage() {
+  const mounted = useMounted();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [ready, setReady] = useState(false);
+
+  const { lang, toggleLang, t } = useLanguage();
+  const { theme, resolvedTheme, setTheme } = useTheme();
+
+  const effectiveTheme =
+    ((resolvedTheme ?? theme ?? "dark") as ThemeMode) || "dark";
+  const activeSection = useActiveSection(scrollSpySections, 200);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const hasSeenLoader = window.sessionStorage.getItem(LOADER_SESSION_KEY);
+    if (hasSeenLoader) {
+      const frame = window.requestAnimationFrame(() => {
+        setReady(true);
+      });
+
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    const frame = window.requestAnimationFrame(() => {
+      setLoading(true);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, [mounted]);
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950" />;
+  }
+
+  const toggleTheme = () => {
+    setTheme(effectiveTheme === "dark" ? "light" : "dark");
+  };
+
+  const handleLoaderComplete = () => {
+    window.sessionStorage.setItem(LOADER_SESSION_KEY, "true");
+    setLoading(false);
+    setReady(true);
+  };
+
+  return (
+    <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900 selection:bg-emerald-500/30 dark:bg-zinc-950 dark:text-zinc-50">
+      <AnimatePresence>
+        {loading && <Loader onComplete={handleLoaderComplete} />}
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+        {ready && !loading && (
+          <motion.div
+            key="main-portfolio"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <Navbar
+              lang={lang}
+              toggleLang={toggleLang}
+              theme={effectiveTheme}
+              toggleTheme={toggleTheme}
+              activeSection={activeSection === "hero" ? "" : activeSection}
+              t={t}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+            <main>
+              <HeroSection lang={lang} t={t} />
+              <AboutSection t={t} />
+              <SkillsSection t={t} />
+              <ExperienceSection t={t} />
+              <ProjectsSection t={t} />
+              <BlogsSection
+                t={t}
+                onSelectBlog={(blog) => router.push(`/blogs/${blog.id}`)}
+              />
+              <WhyHireMeSection t={t} />
+              <TestimonialsSection t={t} />
+              <ContactSection t={t} />
+            </main>
+
+            <Footer t={t} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

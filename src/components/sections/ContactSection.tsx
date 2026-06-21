@@ -64,12 +64,10 @@ export function ContactSection({ t }: ContactSectionProps) {
             >
               <div className="mb-5 rounded-[1.5rem] border border-emerald-100 bg-emerald-50/70 p-4 dark:border-emerald-500/15 dark:bg-emerald-500/10 md:p-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-600 dark:text-emerald-400">
-                  Let&apos;s Connect
+                  {t("contact.connectTitle")}
                 </p>
                 <p className="mt-3 text-sm leading-7 text-zinc-700 dark:text-zinc-300 md:text-[15px]">
-                  I&apos;m open to backend, full-stack, and AI integration
-                  opportunities. If you have a role, freelance project, or
-                  collaboration idea in mind, feel free to reach out.
+                  {t("contact.connectDesc")}
                 </p>
               </div>
 
@@ -121,7 +119,7 @@ export function ContactSection({ t }: ContactSectionProps) {
                   </label>
                   <input
                     type="text"
-                    placeholder="John Doe"
+                    placeholder={t("contact.placeholder.name")}
                     className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-zinc-900 outline-none transition-all placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
                   />
                 </div>
@@ -132,7 +130,7 @@ export function ContactSection({ t }: ContactSectionProps) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Your company"
+                    placeholder={t("contact.placeholder.company")}
                     className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-zinc-900 outline-none transition-all placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
                   />
                 </div>
@@ -144,7 +142,7 @@ export function ContactSection({ t }: ContactSectionProps) {
                 </label>
                 <input
                   type="email"
-                  placeholder="your@email.com"
+                  placeholder={t("contact.placeholder.email")}
                   className="w-full rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-zinc-900 outline-none transition-all placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
                 />
               </div>
@@ -155,7 +153,7 @@ export function ContactSection({ t }: ContactSectionProps) {
                 </label>
                 <textarea
                   rows={7}
-                  placeholder="Tell me about your project..."
+                  placeholder={t("contact.placeholder.message")}
                   className="w-full resize-none rounded-[1.5rem] border border-zinc-200 bg-zinc-50 px-4 py-3 text-zinc-900 outline-none transition-all placeholder:text-zinc-400 focus:border-emerald-400 focus:ring-4 focus:ring-emerald-500/10 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white"
                 />
               </div>

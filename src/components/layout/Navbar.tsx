@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Globe, Menu, Moon, Sun, X } from "lucide-react";
 import { navItems } from "@/config/navigation";
+import { useMounted } from "@/hooks/useMounted";
 import type { ThemeMode } from "@/types/portfolio";
 
 type NavbarProps = {
@@ -26,6 +27,7 @@ export function Navbar({
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const mounted = useMounted();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -95,7 +97,15 @@ export function Navbar({
               className="p-2 rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors text-zinc-600 dark:text-zinc-300"
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {mounted ? (
+                theme === "dark" ? (
+                  <Sun size={18} />
+                ) : (
+                  <Moon size={18} />
+                )
+              ) : (
+                <span className="block h-[18px] w-[18px]" aria-hidden="true" />
+              )}
             </button>
             <button
               onClick={toggleLang}
@@ -143,7 +153,18 @@ export function Navbar({
                   className="p-2 rounded-full bg-zinc-200 dark:bg-zinc-800 transition-colors"
                   aria-label="Toggle theme"
                 >
-                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                  {mounted ? (
+                    theme === "dark" ? (
+                      <Sun size={18} />
+                    ) : (
+                      <Moon size={18} />
+                    )
+                  ) : (
+                    <span
+                      className="block h-[18px] w-[18px]"
+                      aria-hidden="true"
+                    />
+                  )}
                 </button>
                 <button
                   onClick={toggleLang}

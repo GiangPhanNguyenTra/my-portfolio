@@ -134,10 +134,10 @@ export function HeroSection({ lang, t }: HeroSectionProps) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        className="absolute bottom-10 left-1/2 hidden -translate-x-1/2 flex-col items-center md:flex"
       >
         <span className="text-xs uppercase tracking-widest text-zinc-400 mb-2 font-mono">
-          Scroll
+          {t("hero.scroll")}
         </span>
         <motion.div
           animate={{ y: [0, 10, 0] }}

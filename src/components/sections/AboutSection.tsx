@@ -42,27 +42,27 @@ function AnimatedCounter({ from, to }: { from: number; to: number }) {
 
 export function AboutSection({ t }: AboutSectionProps) {
   return (
-    <section id="about" className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" className="relative py-24">
+      <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={staggerContainer}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+          className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2"
         >
           <div>
             <motion.h2
               variants={fadeInUp}
-              className="text-3xl md:text-4xl font-bold mb-8 text-zinc-900 dark:text-white flex items-center"
+              className="mb-8 flex items-center text-3xl font-bold text-zinc-900 dark:text-white md:text-4xl"
             >
-              <Terminal className="text-emerald-500 mr-3" />
+              <Terminal className="mr-3 text-emerald-500" />
               {t("about.title")}
             </motion.h2>
 
             <motion.div
               variants={fadeInUp}
-              className="space-y-6 text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg"
+              className="space-y-6 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400"
             >
               <p>{t("about.p1")}</p>
               <p>{t("about.p2")}</p>
@@ -70,25 +70,25 @@ export function AboutSection({ t }: AboutSectionProps) {
 
             <motion.div
               variants={fadeInUp}
-              className="mt-10 grid grid-cols-3 gap-6"
+              className="mt-10 grid grid-cols-3 gap-3 sm:gap-6"
             >
-              <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 text-center">
-                <div className="text-3xl font-bold text-emerald-500 mb-1">
+              <div className="rounded-xl border border-zinc-200 bg-zinc-100 p-3 text-center dark:border-zinc-800 dark:bg-zinc-900/50 sm:p-4">
+                <div className="mb-1 text-3xl font-bold text-emerald-500">
                   <AnimatedCounter from={0} to={17} />
                 </div>
-                <div className="text-xs uppercase tracking-wider text-zinc-500">
+                <div className="text-[10px] uppercase leading-tight tracking-[0.18em] text-zinc-500 sm:text-xs">
                   {t("about.stat.repos")}
                 </div>
               </div>
-              <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 text-center">
-                <div className="text-3xl font-bold text-violet-500 mb-1">9.1</div>
-                <div className="text-xs uppercase tracking-wider text-zinc-500">
+              <div className="rounded-xl border border-zinc-200 bg-zinc-100 p-3 text-center dark:border-zinc-800 dark:bg-zinc-900/50 sm:p-4">
+                <div className="mb-1 text-3xl font-bold text-violet-500">9.1</div>
+                <div className="text-[10px] uppercase leading-tight tracking-[0.18em] text-zinc-500 sm:text-xs">
                   {t("about.stat.commits")}
                 </div>
               </div>
-              <div className="p-4 rounded-xl bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 text-center">
-                <div className="text-3xl font-bold text-cyan-500 mb-1">B2</div>
-                <div className="text-xs uppercase tracking-wider text-zinc-500">
+              <div className="rounded-xl border border-zinc-200 bg-zinc-100 p-3 text-center dark:border-zinc-800 dark:bg-zinc-900/50 sm:p-4">
+                <div className="mb-1 text-3xl font-bold text-cyan-500">B2</div>
+                <div className="text-[10px] uppercase leading-tight tracking-[0.18em] text-zinc-500 sm:text-xs">
                   {t("about.stat.lang")}
                 </div>
               </div>
@@ -96,12 +96,12 @@ export function AboutSection({ t }: AboutSectionProps) {
           </div>
 
           <motion.div variants={fadeInUp} className="relative">
-            <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-violet-500/20 rounded-2xl blur-2xl" />
-            <div className="relative rounded-2xl border border-zinc-200 dark:border-white/10 bg-white/50 dark:bg-zinc-900/50 backdrop-blur-sm p-6 font-mono text-sm text-zinc-800 dark:text-zinc-300 shadow-xl overflow-hidden group">
-              <div className="flex space-x-2 mb-4">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <div className="w-3 h-3 rounded-full bg-green-500" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-emerald-500/20 to-violet-500/20 blur-2xl" />
+            <div className="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 p-6 font-mono text-sm text-zinc-800 shadow-xl backdrop-blur-sm dark:border-white/10 dark:bg-zinc-900/50 dark:text-zinc-300">
+              <div className="mb-4 flex space-x-2">
+                <div className="h-3 w-3 rounded-full bg-red-500" />
+                <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                <div className="h-3 w-3 rounded-full bg-green-500" />
               </div>
 
               <div className="space-y-2">
@@ -112,7 +112,7 @@ export function AboutSection({ t }: AboutSectionProps) {
                 <p className="pl-4">
                   name:{" "}
                   <span className="text-yellow-600 dark:text-yellow-300">
-                    &apos;Phan Nguyễn Trà Giang&apos;
+                    &apos;Phan Nguyen Tra Giang&apos;
                   </span>
                   ,
                 </p>
@@ -163,7 +163,7 @@ export function AboutSection({ t }: AboutSectionProps) {
                 <p>{"};"}</p>
               </div>
 
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-emerald-500/50 transition-colors duration-500 rounded-2xl pointer-events-none" />
+              <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-transparent transition-colors duration-500 group-hover:border-emerald-500/50" />
             </div>
           </motion.div>
         </motion.div>

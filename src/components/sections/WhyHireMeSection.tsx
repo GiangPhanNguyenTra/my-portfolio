@@ -63,43 +63,39 @@ export function WhyHireMeSection({ t }: WhyHireMeSectionProps) {
             <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-500">
-                  Product + Engineering
+                  {t("hire.leadLabel")}
                 </p>
                 <h3 className="mt-3 text-xl font-bold leading-tight text-zinc-900 dark:text-white md:text-[2rem]">
-                  I build systems that are not only functional, but dependable
-                  under real usage.
+                  {t("hire.leadTitle")}
                 </h3>
                 <p className="mt-4 max-w-2xl text-[15px] leading-8 text-zinc-600 dark:text-zinc-400">
-                  My edge is not just writing code fast. It is understanding the
-                  tradeoff between architecture, delivery speed, maintainability,
-                  and user value. That is what helps me move comfortably between
-                  backend systems, AI features, and full product implementation.
+                  {t("hire.leadDesc")}
                 </p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
                 <div className="rounded-[1.5rem] border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
                   <p className="text-xs uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400">
-                    Strength
+                    {t("hire.summary1.label")}
                   </p>
                   <p className="mt-2 text-lg font-semibold text-zinc-900 dark:text-white">
-                    Backend Architecture
+                    {t("hire.summary1.value")}
                   </p>
                 </div>
                 <div className="rounded-[1.5rem] border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
                   <p className="text-xs uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400">
-                    Focus
+                    {t("hire.summary2.label")}
                   </p>
                   <p className="mt-2 text-lg font-semibold text-zinc-900 dark:text-white">
-                    AI Product Integration
+                    {t("hire.summary2.value")}
                   </p>
                 </div>
                 <div className="rounded-[1.5rem] border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
                   <p className="text-xs uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400">
-                    Style
+                    {t("hire.summary3.label")}
                   </p>
                   <p className="mt-2 text-lg font-semibold text-zinc-900 dark:text-white">
-                    Ownership Mindset
+                    {t("hire.summary3.value")}
                   </p>
                 </div>
               </div>

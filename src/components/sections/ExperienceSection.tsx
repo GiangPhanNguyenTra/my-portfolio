@@ -10,12 +10,14 @@ import {
 } from "lucide-react";
 import { experiences } from "@/data/experience";
 import { fadeInUp, staggerContainer } from "@/lib/utils";
+import type { Language } from "@/types/portfolio";
 
 type ExperienceSectionProps = {
+  lang: Language;
   t: (key: string) => string;
 };
 
-export function ExperienceSection({ t }: ExperienceSectionProps) {
+export function ExperienceSection({ lang, t }: ExperienceSectionProps) {
   return (
     <section
       id="experience"
@@ -62,7 +64,7 @@ export function ExperienceSection({ t }: ExperienceSectionProps) {
                         <h3
                           className={`text-2xl font-bold text-zinc-900 dark:text-white transition-colors ${color === "cyan" ? "group-hover:text-cyan-500" : "group-hover:text-emerald-500"}`}
                         >
-                          {exp.title}
+                          {exp.title[lang]}
                         </h3>
                         <div className="flex items-center text-zinc-600 dark:text-zinc-400 mt-1 font-medium">
                           <NodeIcon size={16} className="mr-2" /> {exp.org}
@@ -71,14 +73,14 @@ export function ExperienceSection({ t }: ExperienceSectionProps) {
 
                       <div
                         className={`inline-flex items-center px-3 py-1 rounded-full font-mono text-sm border whitespace-nowrap w-fit ${color === "cyan" ? "bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-100 dark:border-cyan-500/20" : "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20"}`}
-                      >
-                        <Calendar size={14} className="mr-2" />
-                        {exp.from} - {exp.toCurrent ? t("exp.current") : ""}
+                        >
+                          <Calendar size={14} className="mr-2" />
+                          {exp.from} - {exp.toCurrent ? t("exp.current") : exp.to}
                       </div>
                     </div>
 
                     <ul className="space-y-3 text-zinc-600 dark:text-zinc-400 mt-6">
-                      {exp.items.map((item) => (
+                      {exp.items[lang].map((item) => (
                         <li key={item} className="flex items-start">
                           <ChevronRight
                             className={`w-5 h-5 shrink-0 mr-2 ${color === "cyan" ? "text-cyan-500" : "text-emerald-500"}`}

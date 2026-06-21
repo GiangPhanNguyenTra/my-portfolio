@@ -10,6 +10,7 @@ type BlogModalProps = {
   blog: BlogPost | null;
   onBack: () => void;
   theme: ThemeMode;
+  themeReady?: boolean;
   toggleTheme: () => void;
   lang: Language;
   toggleLang: () => void;
@@ -22,6 +23,7 @@ export function BlogModal({
   blog,
   onBack,
   theme,
+  themeReady = false,
   toggleTheme,
   lang,
   toggleLang,
@@ -66,7 +68,15 @@ export function BlogModal({
               className="rounded-full p-2 text-zinc-600 transition-colors hover:bg-zinc-200 dark:text-zinc-300 dark:hover:bg-zinc-800"
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+              {themeReady ? (
+                theme === "dark" ? (
+                  <Sun size={18} />
+                ) : (
+                  <Moon size={18} />
+                )
+              ) : (
+                <span className="block h-[18px] w-[18px]" aria-hidden="true" />
+              )}
             </button>
             <button
               type="button"
@@ -90,7 +100,7 @@ export function BlogModal({
               <Calendar size={14} className="mr-2" /> {blog.date}
             </span>
             <span className="hidden items-center text-sm font-mono text-zinc-500 dark:text-zinc-400 sm:flex">
-              <User size={14} className="mr-2" /> Phan Nguyễn Trà Giang
+              <User size={14} className="mr-2" /> Phan Nguyen Tra Giang
             </span>
           </div>
           <h1 className="mb-8 text-4xl font-extrabold leading-tight text-zinc-900 dark:text-white md:text-5xl">

@@ -94,10 +94,15 @@ export function HeroSection({ lang, t }: HeroSectionProps) {
               <ArrowRight size={18} />
             </button>
 
-            <button className="w-full sm:w-auto px-8 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-medium transition-all flex items-center justify-center space-x-2">
+            <a
+              href={siteConfig.resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="w-full sm:w-auto px-8 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-medium transition-all flex items-center justify-center space-x-2"
+            >
               <span>{t("hero.cta.resume")}</span>
               <Download size={18} />
-            </button>
+            </a>
           </motion.div>
 
           <motion.div

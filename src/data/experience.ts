@@ -51,12 +51,12 @@ export const experiences: readonly ExperienceItem[] = [
       en: [
         "Graduated with GPA 9.1/10.0 (Excellent).",
         "Focused on backend systems, advanced AI applications, and data structures.",
-        "Participated actively in hackathons and academic research projects.",
+        "Proactively coordinated team projects, divided tasks effectively, and helped deliver strong outcomes in academic work.",
       ],
       vi: [
         "Đã tốt nghiệp với GPA 9.1/10.0 (xếp loại Xuất sắc).",
         "Tập trung vào hệ thống backend, ứng dụng AI nâng cao và cấu trúc dữ liệu.",
-        "Tham gia tích cực vào các cuộc thi hackathon và dự án nghiên cứu học thuật.",
+        "Chủ động điều phối các dự án nhóm, phân chia công việc hợp lý và cùng cả nhóm đạt kết quả tốt trong quá trình học tập.",
       ],
     },
   },

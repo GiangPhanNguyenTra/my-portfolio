@@ -5,8 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
 import { fadeInUp, staggerContainer } from "@/lib/utils";
+import type { Language } from "@/types/portfolio";
 
 type TestimonialsSectionProps = {
+  lang: Language;
   t: (key: string) => string;
 };
 
@@ -22,7 +24,7 @@ const accentClasses = {
     "from-cyan-500 to-sky-500 shadow-[0_12px_30px_rgba(6,182,212,0.25)]",
 } as const;
 
-export function TestimonialsSection({ t }: TestimonialsSectionProps) {
+export function TestimonialsSection({ lang, t }: TestimonialsSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [postInteractionSlow, setPostInteractionSlow] = useState(false);
@@ -129,7 +131,7 @@ export function TestimonialsSection({ t }: TestimonialsSectionProps) {
                     {activeItem.name}
                   </h3>
                   <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                    {activeItem.role}
+                    {activeItem.role[lang]}
                   </p>
 
                   <div className="mt-7 flex gap-2">
@@ -158,7 +160,7 @@ export function TestimonialsSection({ t }: TestimonialsSectionProps) {
                     size={34}
                   />
                   <p className="text-base leading-8 text-zinc-700 dark:text-zinc-300 md:text-[17px]">
-                    {activeItem.quote}
+                    {activeItem.quote[lang]}
                   </p>
                 </div>
               </motion.article>

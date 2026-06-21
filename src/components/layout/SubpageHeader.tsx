@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, Globe, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { useMounted } from "@/hooks/useMounted";
 import type { ThemeMode } from "@/types/portfolio";
 
 type SubpageHeaderProps = {
@@ -19,6 +20,7 @@ export function SubpageHeader({
 }: SubpageHeaderProps) {
   const { lang, toggleLang, t } = useLanguage();
   const { theme, resolvedTheme, setTheme } = useTheme();
+  const mounted = useMounted();
 
   const effectiveTheme =
     ((resolvedTheme ?? theme ?? "dark") as ThemeMode) || "dark";
@@ -56,7 +58,15 @@ export function SubpageHeader({
             className="rounded-full p-2 text-zinc-600 transition-colors hover:bg-zinc-200 dark:text-zinc-300 dark:hover:bg-zinc-800"
             aria-label="Toggle theme"
           >
-            {effectiveTheme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {mounted ? (
+              effectiveTheme === "dark" ? (
+                <Sun size={18} />
+              ) : (
+                <Moon size={18} />
+              )
+            ) : (
+              <span className="block h-[18px] w-[18px]" aria-hidden="true" />
+            )}
           </button>
           <button
             type="button"

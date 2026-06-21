@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { BlogModal } from "@/components/modals/BlogModal";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { blogsData } from "@/data/blogs";
+import { useMounted } from "@/hooks/useMounted";
 import type { ThemeMode } from "@/types/portfolio";
 
 type BlogArticlePageClientProps = {
@@ -17,6 +18,7 @@ export function BlogArticlePageClient({
   const router = useRouter();
   const { lang, toggleLang, t } = useLanguage();
   const { theme, resolvedTheme, setTheme } = useTheme();
+  const mounted = useMounted();
 
   const blog = blogsData.find((item) => item.id === blogId) ?? null;
   const effectiveTheme =
@@ -33,6 +35,7 @@ export function BlogArticlePageClient({
       blog={blog}
       onBack={() => router.push("/blogs")}
       theme={effectiveTheme}
+      themeReady={mounted}
       toggleTheme={toggleTheme}
       lang={lang}
       toggleLang={toggleLang}
